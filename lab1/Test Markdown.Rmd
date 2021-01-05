@@ -1,0 +1,29 @@
+---
+title: "Test Markdown"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#This is plain text
+Plain text
+
+##This is smaller text
+### This is even smaller text
+Use insert to add a chunk of "R" code
+
+```{r}
+4*2
+(7-2*5)/3
+```
+
+```{r message=FALSE, warning=FALSE}
+#install.packages("tidyverse")
+library("tidyverse")
+```
+```{r}
+ggplot(mtcars, aes(x = factor(cyl))) +
+    geom_bar()
+```
