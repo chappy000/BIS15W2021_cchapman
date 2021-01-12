@@ -36,6 +36,7 @@ R allows us to import a wide variety of data types. The most common type of file
 An opinionated word about excel. It is fine to use excel for data entry and basic analysis. But, it often adds formatting that makes excel files difficult to work with in any program besides excel. R can read excel files, but I know of no R programmers that routinely use them. Instead they save copies of their excel files as .csv which strips away formatting but makes them easier to use in a variety of programs. We won't work with excel files in BIS 15L, but we will learn to import them.  
 
 To import any file, first make sure that you are in the correct working directory. If you are not in the correct directory, R will not "see" the file.
+Change directory thru sessions or "setwd()"
 ```{r}
 getwd()
 ```
@@ -44,6 +45,7 @@ getwd()
 Here we open a .csv file. Since we are using the tidyverse, we open the file using `read_csv()`. `readr` is included in the tidyverse set of packages. We specify the package and function with the `::` symbol. This becomes important if you have multiple packages loaded that contain functions with the same name.  
 
 In the previous part of the lab, you exported a `.csv` of hot springs data. Let's try to reload that `.csv`.  
+readr is the package
 ```{r}
 hot_springs <- readr::read_csv("hsprings_data.csv")
 ```
@@ -52,8 +54,15 @@ Use the `str()` function to get an idea of the data structure of `hot_springs`.
 ```{r}
 str(hot_springs)
 ```
+Or use glimpse to get a summary
+"dbl" means numeric data
+```{r}
+glimpse(hot_springs)
+```
 
-What is the class of the scientist column? Change it to factor and then show the levels of that factor.  
+What is the class of the scientist column? Change it to factor and then show the levels of that factor. 
+A factor shows the name as as a whole word, rather than a string of characters . . . "17" vs. "1" and "7"
+
 ```{r}
 class(hot_springs$scientist)
 ```
@@ -65,19 +74,22 @@ class(hot_springs$scientist)
 
 ```{r}
 levels(hot_springs$scientist)
+glimpse(hot_springs)
 ```
 
 ## Practice
-1. In your lab 3 folder there is another folder titled `data`. Inside the `data` folder there is a `.csv` titled `Gaeta_etal_CLC_data.csv`. Open this data and store them as an object called `fish`.  
+1. In your lab 3 folder there is another folder titled `data`. Inside the `data` folder there is a `.csv` titled `Gaeta_etal_CLC_data.csv`. Open this data and store them as an object called `fish`. 
+Fish was not in the lab 3 wd, can tell it go to the data folder within the lab 3 folder with (data/"name")
 
 The data are from: Gaeta J., G. Sass, S. Carpenter. 2012. Biocomplexity at North Temperate Lakes LTER: Coordinated Field Studies: Large Mouth Bass Growth 2006. Environmental Data Initiative.  [link](https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-ntl&identifier=267)  
 ```{r}
-
+#because I moved the file to the lab3 folder
+fish <- readr::read_csv("Gaeta_etal_CLC_data.csv")
 ```
 
 2. What is the structure of these data?
 ```{r}
-
+str(fish)
 ```
 
 Notice that when the data are imported, you are presented with a message that tells you how R interpreted the column classes. This is also where error messages will appear if there are problems.  
@@ -87,7 +99,7 @@ Once data have been uploaded, you may want to get an idea of its structure, cont
 
 We can summarize our data frame with the`summary()` function.  
 ```{r}
-#summary(fish)
+summary(fish)
 ```
 
 `glimpse()` is another useful summary function.
@@ -97,42 +109,42 @@ We can summarize our data frame with the`summary()` function.
 
 `nrow()` gives the numbers of rows.
 ```{r}
-#nrow(fish) #the number of rows or observations
+nrow(fish) #the number of rows or observations
 ```
 
 `ncol` gives the number of columns.
 ```{r}
-#ncol(fish) #the number of columns or variables
+ncol(fish) #the number of columns or variables
 ```
 
 `dim()` gives the dimensions.
 ```{r}
-#dim(fish) #total dimensions
+dim(fish) #total dimensions
 ```
 
 `names` gives the column names.
 ```{r}
-#names(fish) #column names
+names(fish) #column names
 ```
 
 `head()` prints the first n rows of the data frame.
 ```{r}
-#head(fish, n = 10)
+head(fish, n = 10)
 ```
 
 `tail()` prinst the last n rows of the data frame.
 ```{r}
-#tail(fish, n = 10)
+tail(fish, n = 10)
 ```
 
 `table()` is useful when you have a limited number of categorical variables. It produces fast counts of the number of observations in a variable. We will come back to this later... 
 ```{r}
-#table(fish$lakeid)
+table(fish$lakeid)
 ```
 
 We can also click on the `fish` data frame in the Environment tab or type View(fish).
 ```{r}
-#View(fish)
+view(fish)
 ```
 
 ## Subset
