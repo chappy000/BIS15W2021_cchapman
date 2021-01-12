@@ -1,7 +1,7 @@
 ---
 title: "Lab 2 Homework"
 author: "Claire Chapman"
-date: "2021-01-07"
+date: "2021-01-12"
 output:
   html_document:
     keep_md: yes
@@ -13,7 +13,13 @@ Answer the following questions and complete the exercises in RMarkdown. Please e
 
 Make sure to use the formatting conventions of RMarkdown to make your report neat and clean!  
 
-1. Below are data collected by three scientists (Jill, Steve, Susan in order) measuring temperatures of eight hot springs. Run this code chunk to create the vectors.  
+1. What is a vector in R?
+A vector is a way to organize data where data are ordered into a series
+
+2. What is a data matrix in R?  
+A data matrix is a way to organize data where multiple vectors are stacked on each other
+
+3. Below are data collected by three scientists (Jill, Steve, Susan in order) measuring temperatures of eight hot springs. Run this code chunk to create the vectors.  
 
 ```r
 spring_1 <- c(36.25, 35.40, 35.30)
@@ -26,7 +32,7 @@ spring_7 <- c(32.90, 32.50, 32.80)
 spring_8 <- c(36.80, 36.45, 33.15)
 ```
 
-2. Build a data matrix that has the springs as rows and the columns as scientists. 
+4. Build a data matrix that has the springs as rows and the columns as scientists.
 
 ```r
 Temperatures <- c(spring_1, spring_2, spring_3, spring_4, spring_5, spring_6, spring_7, spring_8)
@@ -46,8 +52,8 @@ Temperature_matrix
 ## [8,] 36.80 36.45 33.15
 ```
 
-3. The names of the springs are 1.Bluebell Spring, 2.Opal Spring, 3.Riverside Spring, 4.Too Hot Spring, 5.Mystery Spring, 6.Emerald Spring, 7.Black Spring, 8.Pearl Spring. Name the rows and columns in the data matrix. Start by making two new vectors with the names, then use `colnames()` and `rownames()` to name the columns and rows.
 
+5. The names of the springs are 1.Bluebell Spring, 2.Opal Spring, 3.Riverside Spring, 4.Too Hot Spring, 5.Mystery Spring, 6.Emerald Spring, 7.Black Spring, 8.Pearl Spring. Name the rows and columns in the data matrix. Start by making two new vectors with the names, then use `colnames()` and `rownames()` to name the columns and rows.
 
 ```r
 springs <- c("Bluebell", "Opal", "Riverside", "Too_Hot", "Mystery", "Emerald", "Black", "Pearl")
@@ -70,8 +76,8 @@ Temperature_matrix
 ## Pearl     36.80 36.45 33.15
 ```
 
-4. Calculate the mean temperature of all three springs.
 
+6. Calculate the mean temperature of all eight springs.
 
 ```r
 mean_temp <- rowMeans(Temperature_matrix)
@@ -84,12 +90,11 @@ mean_temp
 ```
 
 
-5. Add this as a new column in the data matrix.  
-
+7. Add this as a new column in the data matrix.
 
 ```r
-better_temperature_matrix <- cbind(Temperature_matrix, mean_temp)
-better_temperature_matrix
+better_temp_matrix <- cbind(Temperature_matrix, mean_temp)
+better_temp_matrix
 ```
 
 ```
@@ -105,11 +110,10 @@ better_temperature_matrix
 ```
 
 
-6. Show Susan's value for Opal Spring only.
-
+8. Show Susan's value for Opal Spring only.
 
 ```r
-better_temperature_matrix[2,3]
+better_temp_matrix[2, 3]
 ```
 
 ```
@@ -117,34 +121,31 @@ better_temperature_matrix[2,3]
 ```
 
 
-7. Calculate the mean for Jill's column only. 
-
-
-```r
-mean(better_temperature_matrix[1:8])
-```
-
-```
-## [1] 34.19375
-```
-OR
-
+9. Calculate the mean for Jill's column only.  
 
 ```r
-mean(better_temperature_matrix[ ,1])
+mean(better_temp_matrix[,1])
 ```
 
 ```
 ## [1] 34.19375
 ```
 
+```r
+#or
+mean(better_temp_matrix[1:8])
+```
 
-8. Use the data matrix to perform one calculation or operation of your interest.
-Finding the average temperature of all the springs:
+```
+## [1] 34.19375
+```
 
+
+10. Use the data matrix to perform one calculation or operation of your interest.
 
 ```r
-mean(better_temperature_matrix[ ,4])
+mean_mean <- mean(better_temp_matrix[,4])
+mean_mean
 ```
 
 ```
