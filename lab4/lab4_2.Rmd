@@ -154,7 +154,7 @@ primates
 ```
 
 ```{r}
-filter(primates, mass == min(primates$mass))
+filter(primates, newborn == min(primates$newborn))
 ```
 
 ## Wrap-up  

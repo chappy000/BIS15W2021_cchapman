@@ -562,14 +562,14 @@ primates
 
 
 ```r
-filter(primates, mass == min(primates$mass))
+filter(primates, newborn == min(primates$newborn))
 ```
 
 ```
 ## # A tibble: 1 x 4
 ##   genus   mass gestation newborn
 ##   <chr>  <dbl>     <dbl>   <dbl>
-## 1 Macaca 3456.      5.49    408.
+## 1 Macaca  5575      5.43    390.
 ```
 
 ## Wrap-up  
