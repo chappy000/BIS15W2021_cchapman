@@ -1,7 +1,7 @@
 ---
 title: "Lab 4 Homework"
 author: "Claire Chapman"
-date: "2021-01-15"
+date: "2021-01-20"
 output:
   html_document:
     keep_md: yes
@@ -23,7 +23,7 @@ getwd()
 ```
 
 ```
-## [1] "C:/Users/Claire Chapman/Desktop/BIS15W2021_cchapman/lab4"
+## [1] "D:/TA files/Winter2021 BIS15L/students_rep/BIS15W2021_cchapman/lab4"
 ```
 
 ## Data
