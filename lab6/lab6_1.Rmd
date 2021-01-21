@@ -87,16 +87,7 @@ tabyl(msleep24, name:sleep_total_24)
 msleep %>% 
   select(order, vore) %>% 
   tabyl(order, vore)
-
-#msleep %>% 
-  select(order, vore) %>% 
-  group_by(order) %>% 
-  summarize(vore)
   
-
-msleep$vore <- as.factor(msleep$vore)
-levels(msleep$vore)
-view(msleep)
 ```
 
 ## `summarize()`
