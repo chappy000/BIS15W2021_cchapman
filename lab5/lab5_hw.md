@@ -1,7 +1,7 @@
 ---
 title: "Lab 5 Homework"
 author: "Claire Chapman"
-date: "2021-01-21"
+date: "2021-01-25"
 output:
   html_document:
     keep_md: yes
@@ -442,7 +442,7 @@ good_guys %>%
 ```
 ## # A tibble: 3 x 2
 ##   `hair_color == "No Hair"`     n
-##   <lgl>                     <int>
+## * <lgl>                     <int>
 ## 1 FALSE                       345
 ## 2 TRUE                         37
 ## 3 NA                          114
@@ -457,7 +457,7 @@ bad_guys %>%
 ```
 ## # A tibble: 3 x 2
 ##   `hair_color == "No Hair"`     n
-##   <lgl>                     <int>
+## * <lgl>                     <int>
 ## 1 FALSE                       119
 ## 2 TRUE                         35
 ## 3 NA                           53
