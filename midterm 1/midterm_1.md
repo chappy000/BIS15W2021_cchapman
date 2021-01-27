@@ -138,6 +138,7 @@ elephants %>%
 ```
 
 **8. (2 points) How does the average height of elephants compare by sex for individuals over 25 years old. Include the min and max height as well as the number of individuals in the sample as part of your analysis.**
+The average height, minimum height, and maximum height is greater for males than for females.
 
 ```r
 elephants %>% 
@@ -262,17 +263,20 @@ is.factor(vertebrates$LandUse)
 vertebrates %>% 
   select(TransectID, HuntCat, Diversity_MammalSpecies, Diversity_BirdSpecies) %>% 
   filter(HuntCat == "High" | HuntCat == "Moderate") %>% 
+  group_by(HuntCat) %>% 
   summarise(avg_diversity_birds = mean(Diversity_BirdSpecies, na.rm = T), avg_diversity_mammals = mean(Diversity_MammalSpecies, na.rm = T), n = n())
 ```
 
 ```
-## # A tibble: 1 x 3
-##   avg_diversity_birds avg_diversity_mammals     n
-##                 <dbl>                 <dbl> <int>
-## 1                1.64                  1.71    15
+## # A tibble: 2 x 4
+##   HuntCat  avg_diversity_birds avg_diversity_mammals     n
+## * <fct>                  <dbl>                 <dbl> <int>
+## 1 High                    1.66                  1.74     7
+## 2 Moderate                1.62                  1.68     8
 ```
 
-**11. (4 points) One of the conclusions in the study is that the relative abundance of animals drops off the closer you get to a village. Let's try to reconstruct this (without the statistics). How does the relative abundance (RA) of apes, birds, elephants, monkeys, rodents, and ungulates compare between sites that are less than 5km from a village to sites that are greater than 20km from a village? The variable `Distance` measures the distance of the transect from the nearest village. Hint: try using the `across` operator.**  
+**11. (4 points) One of the conclusions in the study is that the relative abundance of animals drops off the closer you get to a village. Let's try to reconstruct this (without the statistics). How does the relative abundance (RA) of apes, birds, elephants, monkeys, rodents, and ungulates compare between sites that are less than 5km from a village to sites that are greater than 20km from a village? The variable `Distance` measures the distance of the transect from the nearest village. Hint: try using the `across` operator.**
+From our summary, it looks like it is true that relative abundance is lower when closer to a village in the case of apes, elephants, monkeys, and ungulates.
 
 ```r
 vertebrates_by_distance <- vertebrates %>% 
@@ -292,9 +296,9 @@ vertebrates_by_distance
 ```
 
 **12. (4 points) Based on your interest, do one exploratory analysis on the `gabon` data of your choice. This analysis needs to include a minimum of two functions in `dplyr.`**
+My question is: Do logging transects have less vegetation than parks?
 
 ```r
-#Do logging transects have less vegetation than parks?
 vertebrates %>% 
   select(TransectID, LandUse, contains("Veg")) %>% 
   filter(LandUse != "Neither") %>% 
