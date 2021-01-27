@@ -1,7 +1,7 @@
 ---
 title: "Lab 6 Homework"
 author: "Claire Chapman"
-date: "2021-01-23"
+date: "2021-01-26"
 output:
   html_document:
     keep_md: yes
@@ -524,6 +524,10 @@ focused_fisheries %>%
 ##                                <int>
 ## 1                               1551
 ```
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 6. Which country had the largest overall catch in the year 2000?
 
@@ -540,6 +544,7 @@ focused_fisheries %>%
 ##   <fct>   <dbl> <dbl>
 ## 1 China    2000  9068
 ```
+</div>
 
 7. Which country caught the most sardines (_Sardina pilchardus_) between the years 1990-2000?
 
@@ -558,6 +563,10 @@ focused_fisheries %>%
 ##   <fct>         <dbl>
 ## 1 Morocco        7470
 ```
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 8. Which five countries caught the most cephalopods between 2008-2012?
 
@@ -591,6 +600,7 @@ focused_fisheries %>%
 ## 15 Somalia                            0
 ## 16 Viet Nam                           0
 ```
+</div>
 
 9. Which species had the highest catch total between 2008-2012? (hint: Osteichthyes is not a species)
 
