@@ -125,10 +125,6 @@ focused_fisheries %>%
   summarise(total_catch = sum(catch, na.rm=T)) %>% 
   filter(total_catch == max(total_catch))
 ```
-<style>
-div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
-</style>
-<div class = "blue">
 
 8. Which five countries caught the most cephalopods between 2008-2012?
 ```{r}
@@ -139,7 +135,6 @@ focused_fisheries %>%
   summarise(total_catch = sum(catch, na.rm=T)) %>% 
   arrange(desc(total_catch))
 ```
-</div>
 
 9. Which species had the highest catch total between 2008-2012? (hint: Osteichthyes is not a species)
 ```{r}
