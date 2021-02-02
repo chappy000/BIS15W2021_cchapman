@@ -1,7 +1,7 @@
 ---
 title: "Midterm 1"
 author: "Claire Chapman"
-date: "2021-01-26"
+date: "2021-02-02"
 output:
   html_document:
     keep_md: yes
@@ -25,7 +25,7 @@ getwd()
 ```
 
 ```
-## [1] "C:/Users/Claire Chapman/Desktop/BIS15W2021_cchapman/midterm 1"
+## [1] "D:/TA files/Winter2021 BIS15L/students_rep/BIS15W2021_cchapman/midterm 1"
 ```
 
 ```r
