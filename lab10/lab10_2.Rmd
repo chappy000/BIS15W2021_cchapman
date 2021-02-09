@@ -55,6 +55,7 @@ homerange <- read_csv(here("lab10", "data", "Tamburelloetal_HomeRangeDatabase.cs
 
 ## A few more useful aesthetics
 There are many options to create nice plots in ggplot. One useful trick is to store the plot as a new object and then experiment with geom's and aesthetics.
+Helpful for your readers to have consistent themes/visuals so they don't have to learn how to read each new graph
 ```{r}
 p <- homerange %>% 
   ggplot(aes(x= log10.mass, y= log10.hra))
@@ -66,6 +67,7 @@ p +geom_point(size=1)
 ```
 
 Map shapes to another categorical variable.
+Using shape AND color is useful in showing trends
 ```{r}
 p+geom_point(aes(shape=thermoregulation, color=thermoregulation), size=1.75)
 ```
@@ -112,7 +114,7 @@ Here is the same plot oriented vertically.
 homerange %>% 
   ggplot(aes(x = taxon, fill = trophic.guild)) +
   geom_bar(position = "dodge") +
-  theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+  theme(axis.text.x = element_text(angle = 50, hjust = 1)) +
   labs(title = "Observations by Taxon in Homerange Data",
        x = "Taxonomic Group",
        fill= "Trophic Guild")
@@ -132,16 +134,33 @@ For this practice, let's use the [palmerpenguins](https://allisonhorst.github.io
 
 1. Make a bar plot that shows counts of individuals by island. Fill by species, and try both a stacked bar plot and `position="dodge"`.
 ```{r}
-
+penguins %>% 
+  count(island)
 ```
 
 ```{r}
-
+penguins %>% 
+  ggplot(aes(x=island, fill=species))+ geom_bar()
+```
+```{r}
+penguins %>% 
+  ggplot(aes(x=island, fill=species))+ 
+  geom_bar(position = "dodge")
 ```
 
 2. What are the number of individuals separated by sex on each island?
 ```{r}
+penguins %>% 
+  ggplot(aes(x=island, fill=sex))+ 
+  geom_bar(position = "dodge")
+```
 
+To get rid of the NAs
+```{r}
+penguins %>% 
+  filter(sex != "NA") %>% 
+  ggplot(aes(x=island, fill=sex))+ 
+  geom_bar(position = "dodge")
 ```
 
 ## Using `group`
@@ -154,7 +173,16 @@ homerange %>%
   geom_boxplot()
 ```
 
+Don't have to fill with a new variable...
+```{r}
+homerange %>% 
+  ggplot(aes(x = class, y = log10.mass, fill = class)) +
+  geom_boxplot()
+```
+
+
 I use `group` to make individual box plots for each taxon.
+NO Key/labels for groups
 ```{r}
 homerange %>% 
   ggplot(aes(x = class, y = log10.mass, group = taxon)) +
@@ -162,9 +190,18 @@ homerange %>%
 ```
 
 I can also use `fill` to associate the different taxa with a color coded key.
+Like "group" but with colors
 ```{r}
 homerange %>% 
   ggplot(aes(x = class, y = log10.mass, fill = taxon)) +
+  geom_boxplot()
+```
+
+
+"color" just gives outline of colors
+```{r}
+homerange %>% 
+  ggplot(aes(x = class, y = log10.mass, color = taxon)) +
   geom_boxplot()
 ```
 

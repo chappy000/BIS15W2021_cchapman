@@ -109,17 +109,39 @@ elephants <- read_csv(here("lab10", "data", "ElephantsMF.csv")) %>% clean_names(
 
 1. On midterm 1, I asked how many male and female elephants were represented in the data. How would you make a plot of this?
 ```{r}
+glimpse(elephants)
 
+```
+```{r}
+elephants %>% 
+  count(sex)
+```
+```{r}
+elephants %>% 
+  ggplot(aes(x=sex)) +
+  geom_bar()
 ```
 
 2. How does the age of elephants compare by sex?
+One range of continuous variables and one categorical variable
 ```{r}
-
+elephants %>% 
+  group_by(sex) %>% 
+  summarise(mean_age = mean(age), min_age = min(age), max_age = max(age))
+```
+```{r}
+elephants %>% 
+  ggplot(aes(x=sex, y=age)) + 
+  geom_boxplot()
 ```
 
 3. What is the relationship between age and height?
-```{r}
+Two continuous variables: scatter
 
+```{r}
+elephants %>% 
+  ggplot(aes(x=age, y=height)) +
+  geom_point() + geom_smooth(method="lm")
 ```
 
 ## Aesthetics: Labels
@@ -180,6 +202,7 @@ life_history %>%
   geom_point(na.rm=T)
 ```
 
+exploratory plots. Helps us see interesting outliers
 ```{r}
 life_history %>% 
   filter(gestation>20)
@@ -197,12 +220,25 @@ names(homerange)
 
 1. Make a barplot that shows counts of ectotherms and endotherms. Label the axes, provide a title, and fill by `thermoregulation`.
 ```{r}
-
+homerange %>% 
+  count(thermoregulation)
+```
+```{r}
+homerange %>% 
+  ggplot(aes(x=thermoregulation, fill=thermoregulation))+
+  geom_bar()+
+  labs(title = "Count of Thermoregulation Types", x = "Type of Thermoregulation", y = "Count")+
+  theme(plot.title = element_text(size = rel(1.5), hjust = 0.5, face = "bold"))
+  
 ```
 
 2. Make a scatterplot that compares log10.mass and homerange. Adjust the size of points by mass. Label the axes and provide a title.
 ```{r}
-
+homerange %>% 
+  ggplot(aes(x = log10.mass, y = log10.hra, size = mean.mass.g))+
+  geom_point()+
+  labs(title = "Mass vs. Homerange Size", x = "Log10 Mass", y = "Log10 Homerange")+
+  theme(plot.title = element_text(size = rel(1.5), hjust = 0.5, face = "bold"))
 ```
 
 ## That's it! Take a break and I will see you on Zoom!  
