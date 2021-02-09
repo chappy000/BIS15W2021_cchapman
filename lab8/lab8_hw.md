@@ -1,7 +1,7 @@
 ---
 title: "Lab 8 Homework"
 author: "Claire Chapman"
-date: "2021-02-03"
+date: "2021-02-08"
 output:
   html_document:
     keep_md: yes
@@ -133,7 +133,7 @@ library(here)
 ```
 
 ```
-## here() starts at C:/Users/Claire Chapman/Desktop/BIS15W2021_cchapman
+## here() starts at D:/TA files/Winter2021 BIS15L/students_rep/BIS15W2021_cchapman
 ```
 
 The quotes show the folder structure from the root directory.
