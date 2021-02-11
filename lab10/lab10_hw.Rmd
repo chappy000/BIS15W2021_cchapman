@@ -24,6 +24,9 @@ library(janitor)
 library(here)
 library(naniar)
 ``` 
+```{r}
+options(scipen=999)
+```
 
 ## Desert Ecology
 For this assignment, we are going to use a modified data set on [desert ecology](http://esapubs.org/archive/ecol/E090/118/). The data are from: S. K. Morgan Ernest, Thomas J. Valone, and James H. Brown. 2009. Long-term monitoring and experimental manipulation of a Chihuahuan Desert ecosystem near Portal, Arizona, USA. Ecology 90:1708.
@@ -66,7 +69,7 @@ deserts %>%
 
 ```{r}
 deserts %>% 
-  ggplot(aes(x = taxa, fill = taxa))+
+  ggplot(aes(x = taxa))+
   geom_bar()+
   scale_y_log10()+
   labs(title = "Proportion of Desert Taxa", x = "Taxa", y = "Log10 Count")+

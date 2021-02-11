@@ -24,6 +24,10 @@ library(here)
 library(naniar)
 ```
 
+```r
+options(scipen=999)
+```
+
 ## Desert Ecology
 For this assignment, we are going to use a modified data set on [desert ecology](http://esapubs.org/archive/ecol/E090/118/). The data are from: S. K. Morgan Ernest, Thomas J. Valone, and James H. Brown. 2009. Long-term monitoring and experimental manipulation of a Chihuahuan Desert ecosystem near Portal, Arizona, USA. Ecology 90:1708.
 
@@ -168,14 +172,14 @@ deserts %>%
 
 ```r
 deserts %>% 
-  ggplot(aes(x = taxa, fill = taxa))+
+  ggplot(aes(x = taxa))+
   geom_bar()+
   scale_y_log10()+
   labs(title = "Proportion of Desert Taxa", x = "Taxa", y = "Log10 Count")+
   theme(plot.title = element_text(size = rel(1.5), face = "bold", hjust = 0.5))
 ```
 
-![](lab10_hw_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+![](lab10_hw_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
 
 
 4. For the taxa included in the study, use the fill option to show the proportion of individuals sampled by `plot_type.`
@@ -190,7 +194,7 @@ deserts %>%
   theme(plot.title = element_text(size = rel(1.5), face = "bold", hjust = 0.5))
 ```
 
-![](lab10_hw_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+![](lab10_hw_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 
 
 5. What is the range of weight for each species included in the study? Remove any observations of weight that are NA so they do not show up in the plot.
@@ -231,7 +235,7 @@ deserts %>%
   theme(plot.title = element_text(size = rel(1.5), face = "bold", hjust = 0.5), axis.text.x = element_text(angle = 60, hjust = 1))
 ```
 
-![](lab10_hw_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
+![](lab10_hw_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
 
 
 6. Add another layer to your answer from #4 using `geom_point` to get an idea of how many measurements were taken for each species.
@@ -248,7 +252,7 @@ deserts %>%
   theme(plot.title = element_text(size = rel(1.5), face = "bold", hjust = 0.5), axis.text.x = element_text(angle = 60, hjust = 1))
 ```
 
-![](lab10_hw_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
+![](lab10_hw_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
 
 
 7. [Dipodomys merriami](https://en.wikipedia.org/wiki/Merriam's_kangaroo_rat) is the most frequently sampled animal in the study. How have the number of observations of this species changed over the years included in the study?
@@ -290,7 +294,7 @@ deserts %>%
   theme(plot.title = element_text(size = rel(1.5), face = "bold", hjust = 0.5))
 ```
 
-![](lab10_hw_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
+![](lab10_hw_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
 
 
 8. What is the relationship between `weight` and `hindfoot` length? Consider whether or not over plotting is an issue.
@@ -304,7 +308,7 @@ deserts %>%
   theme(plot.title = element_text(size = rel(1.5), face = "bold", hjust = 0.5))
 ```
 
-![](lab10_hw_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
+![](lab10_hw_files/figure-html/unnamed-chunk-16-1.png)<!-- -->
 
 Overplotting is an issue!
 
@@ -354,7 +358,7 @@ desert_ratio %>%
   theme(plot.title = element_text(size = rel(1.5), face = "bold", hjust = 0.5), axis.text.x = element_text(angle = 60, hjust = 1))
 ```
 
-![](lab10_hw_files/figure-html/unnamed-chunk-18-1.png)<!-- -->
+![](lab10_hw_files/figure-html/unnamed-chunk-19-1.png)<!-- -->
 
 
 10. Make one plot of your choice! Make sure to include at least two of the aesthetics options you have learned.
@@ -370,7 +374,7 @@ deserts %>%
   theme(plot.title = element_text(size = rel(1.5), face = "bold", hjust = 0.5))
 ```
 
-![](lab10_hw_files/figure-html/unnamed-chunk-19-1.png)<!-- -->
+![](lab10_hw_files/figure-html/unnamed-chunk-20-1.png)<!-- -->
 
 
 ## Push your final code to GitHub!
