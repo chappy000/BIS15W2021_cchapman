@@ -29,10 +29,7 @@ Please make sure that you have 1-2 data sets to share with your group member dur
 
 ## Install `RColorBrewer` and `paletteer`
 `RColorBrewer` and `paletteer` are helpful in selecting palettes of color that work with your data. Please install these now, we will work with them in part 2 of today's lab.
-```{r, eval=FALSE, echo=TRUE}
-#install.packages("RColorBrewer")
-#install.packages("paletteer")
-```
+
 
 ## Load the libraries
 ```{r message=FALSE, warning=FALSE}
@@ -80,7 +77,7 @@ deserts %>%
   summarise(n=n()) %>% 
   ggplot(aes(x=year, y=n, group=species_id, color=species_id))+
   geom_line()+
-  geom_point(shape=1)+
+  geom_point(shape=3)+
   theme(axis.text.x = element_text(angle = 60, hjust = 1))+
   labs(title = "Number of samples for species DM",
        x = "Year",
@@ -100,7 +97,7 @@ homerange %>%
 
 Let's play with the colors. This shows all 657 of R's built-in colors. Notice that `color` and `fill` do different things!
 ```{r}
-#grDevices::colors()
+grDevices::colors()
 ```
 
 ## Density plots  
@@ -124,17 +121,27 @@ homerange %>%
 ## Practice
 1. Make a histogram of `log10.hra`. Make sure to add a title.
 ```{r}
-
+homerange %>% 
+  ggplot(aes(x = log10.hra))+
+  geom_histogram(fill="cornflowerblue", color="steelblue", alpha = 0.5)+
+  labs(title = "Distribution of Homerange Size")
 ```
 
 2. Now plot the same variable using `geom_density()`.
 ```{r}
-
+homerange %>% 
+  ggplot(aes(x = log10.hra))+
+  geom_density(fill="cornflowerblue", color="steelblue", alpha = 0.5)+
+  labs(title = "Distribution of Homerange Size")
 ```
 
 3. Combine them both!
 ```{r}
-
+homerange %>% 
+  ggplot(aes(x = log10.hra))+
+  geom_histogram(aes(y=..density..), fill="cornflowerblue", color="steelblue", alpha = 0.5)+
+  geom_density(color="orange")+
+  labs(title = "Distribution of Homerange Size")
 ```
 
 ## Create Categories with mutate and case_when()
@@ -150,6 +157,13 @@ homerange %>%
             max=max(log10.mass))
 ```
 
+Use the quartiles to make ranges for new categories
+```{r}
+summary(homerange$log10.mass)
+```
+
+Make new categorical variable called mass_category
+
 ```{r}
 homerange <- homerange %>% 
              mutate(mass_category = case_when(log10.mass <= 1.75 ~ "small",
@@ -161,8 +175,7 @@ Here we check how the newly created body mass categories compare across `trophic
 ```{r}
 homerange %>% 
   ggplot(aes(x = mass_category, fill = trophic.guild)) +
-  geom_bar() +
-  coord_flip() +
+  geom_bar(position = "dodge") +
   labs(title = "Observations by Taxon and Mass Category in Homerange Data",
        x = "Mass Category",
        fill = "Trophic Guild")
@@ -171,25 +184,38 @@ homerange %>%
 ## Practice
 1. Use case_when() to make a new column `range_category` that breaks down `log10.hra` into very small, small, medium, and large classes based on quartile.
 ```{r}
-
+summary(homerange$log10.hra)
 ```
 
 ```{r}
+library(gtools)
+quartiles <- quantcut(homerange$log10.hra)
+table(quartiles)
+```
 
+
+```{r}
+homerange<- homerange %>% 
+  mutate(range_category = case_when(log10.hra <= 3.65 ~ "very small", log10.hra > 3.65 & log10.hra <= 4.59 ~ "small", log10.hra > 4.59 & log10.hra <= 6.02 ~ "medium", log10.hra >6.02 ~ "large" ))
 ```
 
 ```{r}
-
+glimpse(homerange)
 ```
 
 2. How many and which taxonomic classes are represented in each of the `range_category` classes?
 ```{r}
-
+homerange %>% 
+  ggplot(aes(x = range_category, fill = class))+
+  geom_bar(position = "dodge")
 ```
 
 3. Isolate the small `range_category` and plot the range of `log10.mass` by taxonomic class.
 ```{r}
-
+homerange %>% 
+  filter(range_category == "small") %>% 
+  ggplot(aes(x=class, y=log10.mass, fill = class))+
+  geom_boxplot()
 ```
 
 ## That's it! Take a break and I will see you on Zoom!  
