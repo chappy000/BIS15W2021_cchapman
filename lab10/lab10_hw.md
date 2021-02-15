@@ -1,7 +1,7 @@
 ---
 title: "Lab 10 Homework"
 author: "Claire Chapman"
-date: "2021-02-10"
+date: "2021-02-15"
 output:
   html_document:
     keep_md: yes
