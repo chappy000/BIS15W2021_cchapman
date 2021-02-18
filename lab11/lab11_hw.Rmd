@@ -255,7 +255,13 @@ gapminder_tidy %>%
   theme(axis.text.x = element_text(angle = 60, hjust = 1))+
   labs(title = "Continent Total Population", x = "Year", y = "Population", fill = NULL)
 ```
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 
 ## Push your final code to GitHub!
-Please be sure that you check the `keep md` file in the knit preferences. 
+Please be sure that you check the `keep md` file in the knit preferences.
+
+</div>

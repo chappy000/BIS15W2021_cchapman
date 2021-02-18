@@ -515,7 +515,13 @@ gapminder_tidy %>%
 ```
 
 ![](lab11_hw_files/figure-html/unnamed-chunk-25-1.png)<!-- -->
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 
 ## Push your final code to GitHub!
-Please be sure that you check the `keep md` file in the knit preferences. 
+Please be sure that you check the `keep md` file in the knit preferences.
+
+</div>
