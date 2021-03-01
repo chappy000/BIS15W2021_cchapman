@@ -139,6 +139,10 @@ life_exp_tidy %>%
 ```
 
 ## Life Expectancy  
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 3. (2 points) Let's limit the data to the past 100 years (1920-2020). For these years, which country has the highest life expectancy? How about the lowest life expectancy?  
 
@@ -159,6 +163,7 @@ life_exp_tidy %>%
   filter(between(year, 1920,2020)) %>% 
   arrange(life_exp)
 ```
+</div>
 
 4. (3 points) Although we can see which country has the highest life expectancy for the past 100 years, we don't know which countries have changed the most. What are the top 5 countries that have experienced the biggest improvement in life expectancy between 1920-2020?
 ```{r}
