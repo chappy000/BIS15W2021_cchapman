@@ -1,16 +1,14 @@
 ---
 title: "Lab 13 Homework"
 author: "Claire Chapman"
-date: "`r Sys.Date()`"
+date: "2021-02-28"
 output:
   html_document: 
     theme: spacelab
     keep_md: yes
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 
 ## Instructions
 Answer the following questions and complete the exercises in RMarkdown. Please embed all of your code and push your final work to your repository. Your final lab report should be organized, clean, and run free from errors. Remember, you must remove the `#` for the included code chunks to run. Be sure to add your name to the author header above. For any included plots, make sure they are clearly labeled. You are free to use any plot type that you feel best communicates the results of your analysis.  
@@ -18,11 +16,34 @@ Answer the following questions and complete the exercises in RMarkdown. Please e
 Make sure to use the formatting conventions of RMarkdown to make your report neat and clean!  
 
 ## Libraries
-```{r}
+
+```r
 if (!require("tidyverse")) install.packages('tidyverse')
 ```
 
-```{r message=FALSE, warning=FALSE}
+```
+## Loading required package: tidyverse
+```
+
+```
+## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+```
+
+```
+## v ggplot2 3.3.3     v purrr   0.3.4
+## v tibble  3.0.6     v dplyr   1.0.4
+## v tidyr   1.1.2     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.1
+```
+
+```
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+```
+
+
+```r
 library(tidyverse)
 library(shiny)
 library(shinydashboard)
@@ -31,25 +52,73 @@ library(paletteer)
 
 ## Data
 The data for this assignment come from the [University of California Information Center](https://www.universityofcalifornia.edu/infocenter). Admissions data were collected for the years 2010-2019 for each UC campus. Admissions are broken down into three categories: applications, admits, and enrollees. The number of individuals in each category are presented by demographic.  
-```{r}
+
+```r
 UC_admit <- readr::read_csv("data/UC_admit.csv")
 ```
 
+```
+## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   Campus = col_character(),
+##   Academic_Yr = col_double(),
+##   Category = col_character(),
+##   Ethnicity = col_character(),
+##   `Perc FR` = col_character(),
+##   FilteredCountFR = col_double()
+## )
+```
+
 **1. Use the function(s) of your choice to get an idea of the overall structure of the data frame, including its dimensions, column names, variable classes, etc. As part of this, determine if there are NA's and how they are treated.**  
-```{r}
+
+```r
 str(UC_admit)
 ```
 
+```
+## spec_tbl_df [2,160 x 6] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ Campus         : chr [1:2160] "Davis" "Davis" "Davis" "Davis" ...
+##  $ Academic_Yr    : num [1:2160] 2019 2019 2019 2019 2019 ...
+##  $ Category       : chr [1:2160] "Applicants" "Applicants" "Applicants" "Applicants" ...
+##  $ Ethnicity      : chr [1:2160] "International" "Unknown" "White" "Asian" ...
+##  $ Perc FR        : chr [1:2160] "21.16%" "2.51%" "18.39%" "30.76%" ...
+##  $ FilteredCountFR: num [1:2160] 16522 1959 14360 24024 17526 ...
+##  - attr(*, "spec")=
+##   .. cols(
+##   ..   Campus = col_character(),
+##   ..   Academic_Yr = col_double(),
+##   ..   Category = col_character(),
+##   ..   Ethnicity = col_character(),
+##   ..   `Perc FR` = col_character(),
+##   ..   FilteredCountFR = col_double()
+##   .. )
+```
 
-```{r}
+
+
+```r
 glimpse(UC_admit)
 ```
 
-```{r}
+```
+## Rows: 2,160
+## Columns: 6
+## $ Campus          <chr> "Davis", "Davis", "Davis", "Davis", "Davis", "Davis...
+## $ Academic_Yr     <dbl> 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 201...
+## $ Category        <chr> "Applicants", "Applicants", "Applicants", "Applican...
+## $ Ethnicity       <chr> "International", "Unknown", "White", "Asian", "Chic...
+## $ `Perc FR`       <chr> "21.16%", "2.51%", "18.39%", "30.76%", "22.44%", "0...
+## $ FilteredCountFR <dbl> 16522, 1959, 14360, 24024, 17526, 277, 3425, 78093,...
+```
+
+
+```r
 uc_admit <- janitor::clean_names(UC_admit)
 ```
 
-```{r}
+
+```r
 uc_admit$academic_yr <- as.factor(uc_admit$academic_yr)
 ```
 
@@ -59,14 +128,21 @@ uc_admit$academic_yr <- as.factor(uc_admit$academic_yr)
 
 #### External Graphs
 
-```{r}
+
+```r
 colors <- paletteer::palettes_d_names
 my_palette <-  paletteer_d("yarrr::info")
 my_palette
 ```
 
+```
+## <colors>
+## #E7695DFF #6B8993FF #F6F0D4FF #95CE8AFF #D2D2D2FF #94D4D4FF #969696FF #F1F3E8FF #88775FFF
+```
 
-```{r}
+
+
+```r
 uc_admit %>% 
   filter(ethnicity != "All") %>% 
   ggplot(aes(x = factor(academic_yr), y = filtered_count_fr, fill = ethnicity))+
@@ -76,8 +152,15 @@ uc_admit %>%
   labs(title = "UC Admission by Ethnicity Over Time", x = "Year", y = "Count")
 ```
 
+```
+## Warning: Removed 1 rows containing missing values (geom_col).
+```
 
-```{r, eval=F, echo=T}
+![](lab13_hw_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+
+
+
+```r
 ui <- fluidPage(    
   
   titlePanel("UC Campus Admissions"),
@@ -116,7 +199,8 @@ shinyApp(ui, server)
 
 
 **3. Make alternate version of your app above by tracking enrollment at a campus over all of the represented years while allowing users to interact with campus, category, and ethnicity.**
-```{r}
+
+```r
 ui <- fluidPage(    
   
   titlePanel("UC Campus Admissions"),
@@ -151,6 +235,8 @@ server <- function(input, output) {
 
 shinyApp(ui, server)
 ```
+
+`<div style="width: 100% ; height: 400px ; text-align: center; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;" class="muted well">Shiny applications not supported in static R Markdown documents</div>`{=html}
 
 
 
